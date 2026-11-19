@@ -11,6 +11,7 @@ This simulation validates galactic rotation curves across **438 galaxies** (aggr
 
 
 
+galaxy_rotation_simulation.py
 
 
 import matplotlib.pyplot as plt
