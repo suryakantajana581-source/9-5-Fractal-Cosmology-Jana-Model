@@ -1,8 +1,4 @@
-# 9/5 Fractal Jana Model - 10-Galaxy Cross-Validation
-# Figure 1: Comprehensive 10-galaxy systematic cross-validation
-# Author: Suryakanta Jana
-# Data: SPARC database - raw telescope metrics
-# Zenodo DOI: 10.5281/zenodo.24296082
+
 
 import numpy as np
 import matplotlib.pyplot as plt
