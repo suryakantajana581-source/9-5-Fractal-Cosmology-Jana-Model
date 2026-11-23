@@ -1,13 +1,4 @@
 
-galaxy_rotation_simulation.py
-
-### 438-Galaxy Cross-Validation: 9/5 Fractal Jana Manifold Model
-
-This simulation validates galactic rotation curves across **438 galaxies** (aggregated from **SPARC, WALLABY, THINGS, and LITTLE THINGS** datasets) without invoking hypothetical Dark Matter halos.
-
-* **Framework:** 9/5 Fractal Jana Manifold Model (governed by the $1.5A$ Area Bounded Convergence Limit).
-* **Accuracy:** Reproduces flat rotation curves ($0\text{–}50\text{ kpc}$) with an average fit of **$R^2 = 0.89$ (89%)**.
-* **Plot Details:** Galactocentric Radius ($r$ in $\text{kpc}$) vs. Rotational Velocity ($v$ in $\text{km/s}$).
 
 
 
