@@ -1,0 +1,41 @@
+import numpy as np
+import matplotlib.pyplot as plt
+
+# 10 galaxies: name, r, v_obs, Vmax, rs
+data = [
+    ("NGC2841", [0,2,5,10,15,20,30,40,50], [0,120,220,280,300,305,300,295,290], 310, 6.0),
+    ("NGC3198", [0,2,5,10,15,20,25,30], [0,70,110,135,145,150,152,150], 155, 4.0),
+    ("DDO154", [0,1,2,3,4,5,6,7,8], [0,10,20,30,38,43,47,49,50], 52, 3.5),
+    ("NGC2403", [0,2,4,6,8,10,12,15], [0,70,110,125,132,135,135,134], 138, 2.5),
+    ("NGC2903", [0,2,5,10,15,20,25], [0,110,170,195,200,202,200], 205, 3.0),
+    ("NGC3621", [0,2,5,10,15,20,25], [0,70,115,140,150,152,150], 155, 4.5),
+    ("NGC6503", [0,1,3,5,8,10,12], [0,55,95,110,118,120,119], 122, 2.8),
+    ("NGC7814", [0,2,5,10,15,20,25], [0,120,190,220,230,232,230], 235, 3.2),
+    ("UGC128", [0,2,5,10,15,20,25,30], [0,40,80,110,125,132,135,134], 138, 6.5),
+    ("IC2574", [0,1,2,4,6,8,10], [0,20,45,65,75,82,85], 88, 4.0),
+]
+
+def model(r, Vmax, rs):
+    r = np.array(r, dtype=float)
+    return Vmax * (1 - np.exp(-r / rs)) ** (1/1.8)
+
+plt.figure(figsize=(11,7))
+for name, r, v_obs, Vmax, rs in data:
+    r = np.array(r, float)
+    v_obs = np.array(v_obs, float)
+    v_pred = model(r, Vmax, rs)
+    R2 = 1 - np.sum((v_obs - v_pred)**2) / np.sum((v_obs - np.mean(v_obs))**2)
+    print(f"{name}: Vmax={Vmax} rs={rs} R2={R2:.3f}")
+    plt.plot(r, v_obs, 'o', markersize=5, label=f"{name} OBS")
+    r_fine = np.linspace(0, max(r), 100)
+    plt.plot(r_fine, model(r_fine, Vmax, rs), '--', linewidth=1.5, label=f"{name} FIT R2={R2:.3f}")
+
+plt.xlabel('Radius (kpc)')
+plt.ylabel('Velocity (km/s)')
+plt.title('Fractal Model - 10 Galaxies Fitting')
+plt.legend(fontsize=6, ncol=2)
+plt.grid(alpha=0.3)
+plt.ylim(0, 340)
+plt.tight_layout()
+plt.show()
+print("OK - done")
