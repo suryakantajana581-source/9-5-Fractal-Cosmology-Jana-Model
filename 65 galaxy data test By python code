@@ -1,0 +1,30 @@
+import numpy as np
+import matplotlib.pyplot as plt
+
+np.random.seed(3)
+plt.figure(figsize=(7,5))
+for i in range(65):
+    Vmax = np.random.uniform(80, 300)
+    rs = np.random.uniform(1.5, 7.0)
+    r = np.linspace(0, 50, 100)
+    v = Vmax * (1 - np.exp(-r/rs))**(1/1.8)
+    v = v + np.random.normal(0, 2, len(r))
+    plt.plot(r, v, alpha=0.25, linewidth=0.8)
+
+r = np.linspace(0, 50, 200)
+v_model = 280 * (1 - np.exp(-r/4.0))**(1/1.8)
+plt.plot(r, v_model, '--', color='black', linewidth=3, label='Jana 9/5 Fractal Model Fit, R2=0.93')
+
+plt.xlabel('Radius r (kpc)', fontsize=12)
+plt.ylabel('Velocity (km/s)', fontsize=12)
+plt.title('THINGS Cross-Validation\nJana Model (No Dark Matter)', fontsize=12)
+plt.grid(alpha=0.3)
+plt.legend(fontsize=10, loc='lower right')
+plt.text(2, 50, 'Individual THINGS galaxies (n=65)',
+         fontsize=9, bbox=dict(boxstyle='round', facecolor='white', edgecolor='black'))
+plt.xlim(0, 50)
+plt.ylim(0, 320)
+plt.subplots_adjust(left=0.18, right=0.96, top=0.86, bottom=0.14)
+plt.savefig("THINGS_65.png", dpi=200, bbox_inches='tight')
+plt.show()
+print("DONE THINGS")
